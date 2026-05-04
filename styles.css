@@ -462,16 +462,26 @@ h3 {
 .split-image,
 .contact-image {
   display: flex;
-  min-height: 640px;
   overflow: hidden;
+}
+
+.split-image {
+  height: 640px;
+}
+
+.contact-image {
+  min-height: 640px;
 }
 
 .split-image img,
 .contact-image img {
   flex: 1;
   height: 100%;
-  min-height: inherit;
   object-fit: cover;
+}
+
+.contact-image img {
+  min-height: inherit;
 }
 
 .split-image img {
@@ -866,6 +876,10 @@ h3 {
   .split-image,
   .contact-image {
     min-height: 360px;
+  }
+
+  .split-image {
+    height: 360px;
   }
 
   .split-content,
