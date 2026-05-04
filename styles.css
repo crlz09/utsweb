@@ -238,11 +238,7 @@ h1 {
   display: inline-block;
   padding-inline: 0.02em;
   background: linear-gradient(transparent 68%, rgba(217, 255, 63, 0.95) 68%);
-  font-weight: 950;
-  text-decoration-line: underline;
-  text-decoration-color: #d9ff3f;
-  text-decoration-thickness: 0.12em;
-  text-underline-offset: 0.12em;
+  font-weight: inherit;
 }
 
 h2 {
