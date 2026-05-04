@@ -140,11 +140,8 @@ a {
 
 .hero {
   position: relative;
-  display: grid;
   min-height: 92vh;
   overflow: hidden;
-  align-items: center;
-  padding: 132px 72px 64px;
   color: var(--white);
   background: var(--uts-navy);
 }
@@ -162,6 +159,22 @@ a {
   content: "";
   opacity: 1;
   pointer-events: none;
+}
+
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  align-items: center;
+  padding: 132px 72px 64px;
+  opacity: 0;
+  transition: opacity 420ms ease;
+  visibility: hidden;
+}
+
+.hero-slide.is-active {
+  opacity: 1;
+  visibility: visible;
 }
 
 .hero-media {
@@ -182,6 +195,12 @@ a {
   opacity: 0.08;
 }
 
+.hero-media-image {
+  background:
+    linear-gradient(90deg, rgba(20, 40, 55, 0.88), rgba(20, 40, 55, 0.42)),
+    url("https://images.pexels.com/photos/3184357/pexels-photo-3184357.jpeg?auto=compress&cs=tinysrgb&w=1800") center / cover no-repeat;
+}
+
 .hero-video {
   width: 100%;
   height: 100%;
@@ -197,6 +216,28 @@ a {
 
 .hero-content {
   max-width: 880px;
+}
+
+.hero-dots {
+  position: absolute;
+  bottom: 34px;
+  left: 72px;
+  z-index: 2;
+  display: flex;
+  gap: 10px;
+}
+
+.hero-dots button {
+  width: 34px;
+  height: 4px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.34);
+  cursor: pointer;
+}
+
+.hero-dots button.is-active {
+  background: var(--white);
 }
 
 .eyebrow {
@@ -284,8 +325,7 @@ h3 {
 .contact-content p,
 .site-footer p,
 .section-heading p,
-.split-content p,
-.brand-copy p {
+.split-content p {
   color: var(--muted);
 }
 
@@ -385,70 +425,14 @@ h3 {
   box-shadow: 0 16px 32px rgba(20, 40, 55, 0.18);
 }
 
-.service-icon-slot::before {
-  width: 26px;
-  height: 26px;
-  border: 2px solid rgba(255, 255, 255, 0.82);
-  border-radius: 6px;
-  content: "";
-}
-
-.brand-system {
-  display: grid;
-  grid-template-columns: minmax(0, 0.86fr) minmax(0, 1fr);
-  gap: 42px;
-  padding: 108px 72px;
-  color: var(--white);
-  background: var(--uts-navy);
-}
-
-.brand-copy p {
-  max-width: 620px;
-  color: rgba(255, 255, 255, 0.72);
-}
-
-.palette {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
-}
-
-.swatch {
-  display: flex;
-  min-height: 160px;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 8px;
-  box-shadow: 0 18px 46px rgba(0, 0, 0, 0.16);
-}
-
-.swatch span {
-  font-size: 0.88rem;
-  font-weight: 850;
-}
-
-.swatch strong {
-  font-size: 1.2rem;
-}
-
-.swatch.navy {
-  background: #102830;
-}
-
-.swatch.ink {
-  background: #0f172a;
-}
-
-.swatch.ice {
-  background: #eaf4ff;
-  color: var(--ink);
-}
-
-.swatch.line {
-  background: #d7e4f5;
-  color: var(--ink);
+.service-icon-slot svg {
+  width: 34px;
+  height: 34px;
+  fill: none;
+  stroke: var(--white);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2.4;
 }
 
 .split-section,
@@ -570,20 +554,12 @@ h3 {
 }
 
 .site-footer {
-  display: grid;
-  grid-template-columns: minmax(240px, 1fr) auto auto;
-  gap: 28px;
-  align-items: center;
+  display: flex;
+  justify-content: center;
   padding: 34px 72px;
   background: var(--white);
   border-top: 1px solid var(--line);
-}
-
-.site-footer nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 18px;
-  font-weight: 850;
+  text-align: center;
 }
 
 .site-footer p {
@@ -659,8 +635,18 @@ h3 {
 
   .hero {
     min-height: auto;
-    padding: 112px 20px 48px;
     overflow: hidden;
+  }
+
+  .hero-slide {
+    position: relative;
+    display: none;
+    min-height: 76vh;
+    padding: 112px 20px 58px;
+  }
+
+  .hero-slide.is-active {
+    display: grid;
   }
 
   .hero-lede {
@@ -679,18 +665,12 @@ h3 {
   .split-section,
   .about-section,
   .contact-section,
-  .brand-system,
   .site-footer {
     grid-template-columns: 1fr;
   }
 
-  .section,
-  .brand-system {
+  .section {
     padding: 64px 20px;
-  }
-
-  .palette {
-    grid-template-columns: 1fr;
   }
 
   .service-carousel {
@@ -719,6 +699,11 @@ h3 {
   .site-footer {
     align-items: start;
     padding: 34px 20px;
+  }
+
+  .hero-dots {
+    bottom: 24px;
+    left: 20px;
   }
 }
 

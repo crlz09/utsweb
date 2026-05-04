@@ -6,6 +6,9 @@ const heroVideo = document.querySelector(".hero-video");
 const serviceCarousel = document.querySelector("[data-service-carousel]");
 const carouselPrev = document.querySelector("[data-carousel-prev]");
 const carouselNext = document.querySelector("[data-carousel-next]");
+const heroSlides = [...document.querySelectorAll("[data-hero-slide]")];
+const heroDots = [...document.querySelectorAll("[data-hero-dot]")];
+let activeHeroSlide = 0;
 
 const updateHeader = () => {
   header?.classList.toggle("is-scrolled", window.scrollY > 24);
@@ -32,6 +35,18 @@ const playHeroVideo = () => {
   heroVideo.play().catch(() => {});
 };
 
+const showHeroSlide = (index) => {
+  if (!heroSlides.length) return;
+  activeHeroSlide = (index + heroSlides.length) % heroSlides.length;
+  heroSlides.forEach((slide, slideIndex) => {
+    slide.classList.toggle("is-active", slideIndex === activeHeroSlide);
+  });
+  heroDots.forEach((dot, dotIndex) => {
+    dot.classList.toggle("is-active", dotIndex === activeHeroSlide);
+  });
+  if (activeHeroSlide === 0) playHeroVideo();
+};
+
 heroVideo?.addEventListener("ended", () => {
   heroVideo.currentTime = 0;
   playHeroVideo();
@@ -56,8 +71,12 @@ const scrollServices = (direction) => {
 
 carouselPrev?.addEventListener("click", () => scrollServices(-1));
 carouselNext?.addEventListener("click", () => scrollServices(1));
+heroDots.forEach((dot, index) => {
+  dot.addEventListener("click", () => showHeroSlide(index));
+});
 
 year.textContent = String(new Date().getFullYear());
 updateHeader();
+showHeroSlide(0);
 playHeroVideo();
 window.addEventListener("scroll", updateHeader, { passive: true });

@@ -41,108 +41,46 @@
     </header>
 
     <main id="top">
-      <section class="hero" aria-labelledby="hero-title">
-        <div class="hero-media" aria-hidden="true">
-          <video
-            class="hero-video"
-            autoplay
-            muted
-            loop
-            playsinline
-            preload="auto"
-            poster="./assets/hero-factory-poster.jpeg"
-          >
-            <source src="./assets/hero-video.mp4" type="video/mp4" />
-            <source src="./assets/hero-factory.mov" type="video/quicktime" />
-          </video>
-        </div>
-        <div class="hero-content">
-          <p class="eyebrow">UNIVERSAL TALENT SOURCE</p>
-          <h1 id="hero-title">We are ready when you are.</h1>
-          <p class="hero-lede">
-            Whether you’re a job seeker ready to find work that works for you, or a business looking for a smarter, faster and more reliable staffing experience, UTS can take you there.
-          </p>
-          <div class="hero-actions">
-            <a class="button button-primary" href="#contact">Start a hiring conversation</a>
-            <a class="button button-secondary" href="#brand">View brand system</a>
+      <section class="hero" aria-labelledby="hero-title" data-hero-carousel>
+        <article class="hero-slide is-active" data-hero-slide>
+          <div class="hero-media" aria-hidden="true">
+            <video
+              class="hero-video"
+              autoplay
+              muted
+              loop
+              playsinline
+              preload="auto"
+              poster="./assets/hero-factory-poster.jpeg"
+            >
+              <source src="./assets/hero-video.mp4" type="video/mp4" />
+              <source src="./assets/hero-factory.mov" type="video/quicktime" />
+            </video>
           </div>
-        </div>
-      </section>
-
-      <section class="section section-light" id="services">
-        <div class="section-heading">
-          <p class="eyebrow">Solutions</p>
-          <h2>Recruiting support with the discipline of an operations desk.</h2>
-          <p>
-            From first role definition to onboarding support, UTS helps companies reduce hiring friction and improve candidate quality.
-          </p>
-        </div>
-        <div class="service-carousel-wrap">
-          <div class="carousel-controls" aria-label="Service carousel controls">
-            <button type="button" aria-label="Previous service" data-carousel-prev>‹</button>
-            <button type="button" aria-label="Next service" data-carousel-next>›</button>
+          <div class="hero-content">
+            <p class="eyebrow">UNIVERSAL TALENT SOURCE</p>
+            <h1 id="hero-title">We are ready when you are.</h1>
+            <p class="hero-lede">
+              Whether you’re a job seeker ready to find work that works for you, or a business looking for a smarter, faster and more reliable staffing experience, UTS can take you there.
+            </p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#contact">Let’s talk!</a>
+            </div>
           </div>
-          <div class="service-carousel" aria-label="UTS staffing services" data-service-carousel>
-            <article class="service-card">
-              <span class="service-icon-slot" aria-hidden="true"></span>
-              <h3>Targeted sourcing</h3>
-              <p>We focus on roles that keep operations moving.</p>
-            </article>
-            <article class="service-card">
-              <span class="service-icon-slot" aria-hidden="true"></span>
-              <h3>Candidate Screening</h3>
-              <p>
-                Review resumes, evaluate skills, conduct initial interviews, and present focused shortlists aligned to your requirements.
-              </p>
-            </article>
-            <article class="service-card">
-              <span class="service-icon-slot" aria-hidden="true"></span>
-              <h3>Onboarding Support</h3>
-              <p>
-                Help new hires enter smoothly with practical support around orientation, training coordination, and early integration.
-              </p>
-            </article>
-            <article class="service-card">
-              <span class="service-icon-slot" aria-hidden="true"></span>
-              <h3>Scalable hiring</h3>
-              <p>Support for single openings, urgent ramp-ups, and ongoing needs nationwide.</p>
-            </article>
-            <article class="service-card">
-              <span class="service-icon-slot" aria-hidden="true"></span>
-              <h3>Less risk, more peace of mind</h3>
-              <p>
-                All workers in UTS’ network are E-Verified. Our verified workforce is ready to help you get the job done.
-              </p>
-            </article>
+        </article>
+        <article class="hero-slide" data-hero-slide>
+          <div class="hero-media hero-media-image" aria-hidden="true"></div>
+          <div class="hero-content">
+            <p class="eyebrow">UNIVERSAL TALENT SOURCE</p>
+            <h1>Best companies linked with the most talented people.</h1>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#contact">Let’s talk!</a>
+            </div>
           </div>
-        </div>
-      </section>
-
-      <section class="brand-system" id="brand">
-        <div class="brand-copy">
-          <p class="eyebrow">Brand language</p>
-          <h2>Sharp, technical, and dependable.</h2>
-          <p>
-            The UTS visual system uses a deep navy foundation, white industrial lettering, cool blue interface surfaces, and restrained status colors inherited from the admin product.
-          </p>
-        </div>
-        <div class="palette" aria-label="UTS color palette">
-          <article class="swatch navy">
-            <span>#102830</span>
-            <strong>UTS Navy</strong>
-          </article>
-          <article class="swatch ink">
-            <span>#0F172A</span>
-            <strong>Interface Ink</strong>
-          </article>
-          <article class="swatch ice">
-            <span>#EAF4FF</span>
-            <strong>Blue Ice</strong>
-          </article>
-          <article class="swatch line">
-            <span>#D7E4F5</span>
-            <strong>System Line</strong>
-          </article>
+        </article>
+        <div class="hero-dots" aria-label="Landing banner slides">
+          <button class="is-active" type="button" aria-label="Show slide 1" data-hero-dot></button>
+          <button type="button" aria-label="Show slide 2" data-hero-dot></button>
         </div>
       </section>
 
@@ -197,6 +135,65 @@
         </div>
       </section>
 
+      <section class="section section-light" id="services">
+        <div class="section-heading">
+          <p class="eyebrow">Solutions</p>
+          <h2>Recruiting support with the discipline of an operations desk.</h2>
+          <p>
+            From first role definition to onboarding support, UTS helps companies reduce hiring friction and improve candidate quality.
+          </p>
+        </div>
+        <div class="service-carousel-wrap">
+          <div class="carousel-controls" aria-label="Service carousel controls">
+            <button type="button" aria-label="Previous service" data-carousel-prev>‹</button>
+            <button type="button" aria-label="Next service" data-carousel-next>›</button>
+          </div>
+          <div class="service-carousel" aria-label="UTS staffing services" data-service-carousel>
+            <article class="service-card">
+              <span class="service-icon-slot" aria-hidden="true">
+                <svg viewBox="0 0 32 32"><path d="M16 5v22M5 16h22"/><circle cx="16" cy="16" r="7"/></svg>
+              </span>
+              <h3>Targeted sourcing</h3>
+              <p>We focus on roles that keep operations moving.</p>
+            </article>
+            <article class="service-card">
+              <span class="service-icon-slot" aria-hidden="true">
+                <svg viewBox="0 0 32 32"><path d="M12 17l3 3 6-7"/><path d="M8 7h16v20H8z"/><path d="M12 3h8l2 4H10z"/></svg>
+              </span>
+              <h3>Candidate Screening</h3>
+              <p>
+                Review resumes, evaluate skills, conduct initial interviews, and present focused shortlists aligned to your requirements.
+              </p>
+            </article>
+            <article class="service-card">
+              <span class="service-icon-slot" aria-hidden="true">
+                <svg viewBox="0 0 32 32"><path d="M6 22h20"/><path d="M10 18l6-6 6 6"/><path d="M16 12v14"/></svg>
+              </span>
+              <h3>Onboarding Support</h3>
+              <p>
+                Help new hires enter smoothly with practical support around orientation, training coordination, and early integration.
+              </p>
+            </article>
+            <article class="service-card">
+              <span class="service-icon-slot" aria-hidden="true">
+                <svg viewBox="0 0 32 32"><path d="M7 22l7-7 5 5 6-9"/><path d="M19 11h6v6"/></svg>
+              </span>
+              <h3>Scalable hiring</h3>
+              <p>Support for single openings, urgent ramp-ups, and ongoing needs nationwide.</p>
+            </article>
+            <article class="service-card">
+              <span class="service-icon-slot" aria-hidden="true">
+                <svg viewBox="0 0 32 32"><path d="M16 4l10 4v7c0 7-4 11-10 13C10 26 6 22 6 15V8z"/><path d="M11 16l3 3 7-7"/></svg>
+              </span>
+              <h3>Less risk, more peace of mind</h3>
+              <p>
+                All workers in UTS’ network are E-Verified. Our verified workforce is ready to help you get the job done.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
       <section class="about-section" id="about">
         <div class="about-copy">
           <p class="eyebrow">About Universal Talent Source</p>
@@ -243,17 +240,6 @@
     </main>
 
     <footer class="site-footer">
-      <div>
-        <strong>Universal Talent Source</strong>
-        <p>Best companies linked with the most talented people.</p>
-      </div>
-      <nav aria-label="Footer navigation">
-        <a href="#services">Solutions</a>
-        <a href="#industries">Industries</a>
-        <a href="#brand">Brand</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-      </nav>
       <p>&copy; <span data-year></span> Universal Talent Source. All rights reserved.</p>
     </footer>
 
