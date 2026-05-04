@@ -3,6 +3,9 @@ const nav = document.querySelector("[data-nav]");
 const navToggle = document.querySelector("[data-nav-toggle]");
 const year = document.querySelector("[data-year]");
 const heroVideo = document.querySelector(".hero-video");
+const serviceCarousel = document.querySelector("[data-service-carousel]");
+const carouselPrev = document.querySelector("[data-carousel-prev]");
+const carouselNext = document.querySelector("[data-carousel-next]");
 
 const updateHeader = () => {
   header?.classList.toggle("is-scrolled", window.scrollY > 24);
@@ -43,6 +46,16 @@ heroVideo?.addEventListener("loadedmetadata", playHeroVideo);
 document.addEventListener("visibilitychange", () => {
   if (!document.hidden) playHeroVideo();
 });
+
+const scrollServices = (direction) => {
+  if (!serviceCarousel) return;
+  const card = serviceCarousel.querySelector(".service-card");
+  const distance = card ? card.getBoundingClientRect().width + 18 : 360;
+  serviceCarousel.scrollBy({ left: direction * distance, behavior: "smooth" });
+};
+
+carouselPrev?.addEventListener("click", () => scrollServices(-1));
+carouselNext?.addEventListener("click", () => scrollServices(1));
 
 year.textContent = String(new Date().getFullYear());
 updateHeader();
