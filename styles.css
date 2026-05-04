@@ -1,5 +1,5 @@
 :root {
-  --uts-navy: #102830;
+  --uts-navy: #142837;
   --uts-navy-2: #162437;
   --ink: #0f172a;
   --muted: #536176;
@@ -54,11 +54,11 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 44px;
+  min-height: 82px;
+  padding: 14px 48px;
   color: var(--white);
-  background: rgba(16, 40, 48, 0.84);
+  background: var(--uts-navy);
   border-bottom: 1px solid var(--line-dark);
-  backdrop-filter: blur(16px);
   transition:
     background 180ms ease,
     box-shadow 180ms ease;
@@ -66,7 +66,7 @@ a {
 
 .site-header.is-scrolled,
 .site-header.is-open {
-  background: rgba(16, 40, 48, 0.96);
+  background: var(--uts-navy);
   box-shadow: 0 16px 48px rgba(16, 40, 48, 0.22);
 }
 
@@ -79,8 +79,8 @@ a {
 }
 
 .brand img {
-  width: 112px;
-  height: 48px;
+  width: 126px;
+  height: 54px;
   object-fit: contain;
 }
 
@@ -94,10 +94,12 @@ a {
 .main-nav {
   display: flex;
   align-items: center;
-  gap: 28px;
-  color: rgba(255, 255, 255, 0.86);
-  font-size: 0.94rem;
-  font-weight: 800;
+  gap: clamp(28px, 5vw, 72px);
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.98rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
 .main-nav a {
@@ -133,8 +135,10 @@ a {
 }
 
 .nav-cta {
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  background: rgba(255, 255, 255, 0.08);
+  min-width: 150px;
+  border: 1px solid var(--white);
+  background: var(--white);
+  color: var(--uts-navy);
 }
 
 .nav-toggle {
@@ -633,7 +637,8 @@ h3 {
   .nav-cta {
     margin-top: 6px;
     border-color: var(--line);
-    background: var(--soft);
+    background: var(--uts-navy);
+    color: var(--white);
   }
 
   .hero {
