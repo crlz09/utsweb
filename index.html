@@ -34,8 +34,8 @@
         <span></span>
       </button>
       <nav class="main-nav" data-nav>
-        <a href="#industries">Find Jobs</a>
-        <a href="#services">Find Workers</a>
+        <a href="https://www.uts.services/register">Find Jobs</a>
+        <a href="#contact">Find Workers</a>
         <a class="nav-cta" href="#contact">Contact Us</a>
       </nav>
     </header>
@@ -87,6 +87,7 @@
       <section class="split-section" id="industries">
         <div class="split-image">
           <img
+            data-industry-image
             src="https://images.pexels.com/photos/34207364/pexels-photo-34207364.jpeg?auto=compress&cs=tinysrgb&w=1200"
             alt="Skilled technicians reviewing industrial equipment"
             loading="lazy"
@@ -94,19 +95,60 @@
         </div>
         <div class="split-content">
           <p class="eyebrow">Industry staffing specialties</p>
-          <h2>Talent for the roles that keep facilities productive.</h2>
+          <h2><span class="accent-underline">Talent</span> for the roles that keep facilities productive.</h2>
           <p>
             UTS partners with companies across practical, high-need industries where reliability, safety awareness, and skill matter every day.
           </p>
           <div class="industry-list" aria-label="Industries served">
-            <span>Electricians</span>
-            <span>Mechanics</span>
-            <span>Janitorial</span>
-            <span>Machinists</span>
-            <span>Factory</span>
-            <span>Automation</span>
-            <span>Warehouse</span>
-            <span>Maintenance</span>
+            <button
+              class="is-active"
+              type="button"
+              data-industry-badge
+              data-image="https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg?auto=compress&cs=tinysrgb&w=1200"
+              data-alt="Electrician working on an industrial electrical panel"
+            >Electricians</button>
+            <button
+              type="button"
+              data-industry-badge
+              data-image="https://images.pexels.com/photos/3807319/pexels-photo-3807319.jpeg?auto=compress&cs=tinysrgb&w=1200"
+              data-alt="Mechanic inspecting industrial equipment"
+            >Mechanics</button>
+            <button
+              type="button"
+              data-industry-badge
+              data-image="https://images.pexels.com/photos/4107120/pexels-photo-4107120.jpeg?auto=compress&cs=tinysrgb&w=1200"
+              data-alt="Commercial cleaning crew maintaining a facility"
+            >Janitorial</button>
+            <button
+              type="button"
+              data-industry-badge
+              data-image="https://images.pexels.com/photos/3862132/pexels-photo-3862132.jpeg?auto=compress&cs=tinysrgb&w=1200"
+              data-alt="Machinist reviewing precision manufacturing equipment"
+            >Machinists</button>
+            <button
+              type="button"
+              data-industry-badge
+              data-image="https://images.pexels.com/photos/34207364/pexels-photo-34207364.jpeg?auto=compress&cs=tinysrgb&w=1200"
+              data-alt="Modern factory floor with production equipment"
+            >Factory</button>
+            <button
+              type="button"
+              data-industry-badge
+              data-image="https://images.pexels.com/photos/3862130/pexels-photo-3862130.jpeg?auto=compress&cs=tinysrgb&w=1200"
+              data-alt="Automation technician working near industrial systems"
+            >Automation</button>
+            <button
+              type="button"
+              data-industry-badge
+              data-image="https://images.pexels.com/photos/4481328/pexels-photo-4481328.jpeg?auto=compress&cs=tinysrgb&w=1200"
+              data-alt="Warehouse worker handling inventory in a logistics facility"
+            >Warehouse</button>
+            <button
+              type="button"
+              data-industry-badge
+              data-image="https://images.pexels.com/photos/4489737/pexels-photo-4489737.jpeg?auto=compress&cs=tinysrgb&w=1200"
+              data-alt="Maintenance technician checking facility systems"
+            >Maintenance</button>
           </div>
         </div>
       </section>
@@ -212,7 +254,6 @@
           <img
             src="https://images.pexels.com/photos/3862129/pexels-photo-3862129.jpeg?auto=compress&cs=tinysrgb&w=1400"
             alt="Engineering team working in a clean industrial workshop"
-            loading="lazy"
           />
         </div>
         <div class="contact-content">
@@ -221,9 +262,33 @@
           <p>
             Share your hiring needs and UTS will follow up with focused, practical next steps.
           </p>
+          <form
+            class="company-form"
+            action="mailto:info@universaltalentsource.com?subject=Hiring%20Support%20Request"
+            method="post"
+            enctype="text/plain"
+          >
+            <label>
+              <span>Company</span>
+              <input type="text" name="company" autocomplete="organization" required />
+            </label>
+            <label>
+              <span>Contact</span>
+              <input type="text" name="contact" autocomplete="name" required />
+            </label>
+            <label>
+              <span>Email or phone</span>
+              <input type="text" name="contact_info" autocomplete="email" required />
+            </label>
+            <label>
+              <span>Roles needed</span>
+              <textarea name="roles_needed" rows="4" required></textarea>
+            </label>
+            <button class="button button-primary" type="submit">Send request</button>
+          </form>
           <div class="contact-actions">
             <a class="button button-primary" href="mailto:info@universaltalentsource.com?subject=Hiring%20Support%20Request">Email UTS</a>
-            <a class="button button-secondary dark" href="#services">Review services</a>
+            <a class="button button-secondary dark" href="https://www.uts.services/register">Find jobs</a>
           </div>
         </div>
       </section>
@@ -232,6 +297,8 @@
     <footer class="site-footer">
       <p>&copy; <span data-year></span> Universal Talent Source. All rights reserved.</p>
     </footer>
+
+    <a class="back-to-top" href="#top" aria-label="Go to top" data-back-to-top>↑</a>
 
     <script src="./script.js"></script>
   </body>

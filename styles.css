@@ -411,7 +411,11 @@ h3 {
 }
 
 .service-carousel-wrap:hover .service-carousel {
-  animation-play-state: running;
+  animation-play-state: paused;
+}
+
+.service-carousel.is-paused {
+  animation-play-state: paused;
 }
 
 @keyframes services-marquee {
@@ -457,14 +461,29 @@ h3 {
 
 .split-image,
 .contact-image {
+  display: flex;
   min-height: 640px;
   overflow: hidden;
 }
 
 .split-image img,
 .contact-image img {
+  flex: 1;
   height: 100%;
+  min-height: inherit;
   object-fit: cover;
+}
+
+.split-image img {
+  opacity: 1;
+  transition:
+    opacity 220ms ease,
+    transform 420ms ease;
+}
+
+.split-image img.is-changing {
+  opacity: 0.18;
+  transform: scale(1.015);
 }
 
 .split-content,
@@ -481,6 +500,11 @@ h3 {
   background: var(--white);
 }
 
+.accent-underline {
+  display: inline-block;
+  box-shadow: inset 0 -0.18em 0 #d8ff3f;
+}
+
 .industry-list {
   display: flex;
   flex-wrap: wrap;
@@ -488,13 +512,31 @@ h3 {
   margin-top: 18px;
 }
 
-.industry-list span {
-  padding: 10px 14px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: var(--soft);
+.industry-list button {
+  appearance: none;
+  padding: 10px 15px;
+  border: 2px solid #bfd0e5;
+  border-radius: 9px;
+  background: transparent;
   color: var(--ink);
+  cursor: pointer;
+  font: inherit;
   font-weight: 850;
+  transition:
+    background 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease,
+    transform 160ms ease;
+}
+
+.industry-list button:hover,
+.industry-list button:focus-visible,
+.industry-list button.is-active {
+  border-color: var(--uts-navy);
+  background: var(--uts-navy);
+  color: var(--white);
+  outline: none;
+  transform: translateY(-1px);
 }
 
 .process-section {
@@ -609,6 +651,50 @@ h3 {
   color: rgba(255, 255, 255, 0.72);
 }
 
+.company-form {
+  display: grid;
+  max-width: 620px;
+  gap: 12px;
+  margin: 8px 0 18px;
+}
+
+.company-form label {
+  display: grid;
+  gap: 7px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.82rem;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.company-form input,
+.company-form textarea {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--white);
+  font: inherit;
+  outline: none;
+  padding: 13px 14px;
+}
+
+.company-form textarea {
+  resize: vertical;
+}
+
+.company-form input:focus,
+.company-form textarea:focus {
+  border-color: var(--white);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.company-form button {
+  justify-self: start;
+  border: 0;
+  cursor: pointer;
+}
+
 .site-footer {
   display: flex;
   justify-content: center;
@@ -620,6 +706,36 @@ h3 {
 
 .site-footer p {
   margin: 0;
+}
+
+.back-to-top {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 25;
+  display: grid;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.48);
+  border-radius: 8px;
+  background: var(--uts-navy);
+  color: var(--white);
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.22);
+  font-size: 1.45rem;
+  font-weight: 900;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(12px);
+  transition:
+    opacity 160ms ease,
+    transform 160ms ease;
+}
+
+.back-to-top.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
 }
 
 @media (max-width: 1100px) {

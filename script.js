@@ -8,11 +8,19 @@ const carouselPrev = document.querySelector("[data-carousel-prev]");
 const carouselNext = document.querySelector("[data-carousel-next]");
 const heroSlides = [...document.querySelectorAll("[data-hero-slide]")];
 const heroDots = [...document.querySelectorAll("[data-hero-dot]")];
+const industryImage = document.querySelector("[data-industry-image]");
+const industryBadges = [...document.querySelectorAll("[data-industry-badge]")];
+const industryList = document.querySelector(".industry-list");
+const backToTop = document.querySelector("[data-back-to-top]");
 let activeHeroSlide = 0;
 let heroSlideTimer;
+let activeIndustryIndex = 0;
+let industryTimer;
+let industryHovering = false;
 
 const updateHeader = () => {
   header?.classList.toggle("is-scrolled", window.scrollY > 24);
+  backToTop?.classList.toggle("is-visible", window.scrollY > 620);
 };
 
 navToggle?.addEventListener("click", () => {
@@ -104,13 +112,85 @@ const setupServicesMarquee = () => {
   serviceCarousel.dataset.marqueeReady = "true";
 };
 
+const pauseServicesMarquee = () => {
+  serviceCarousel?.classList.add("is-paused");
+};
+
+const resumeServicesMarquee = () => {
+  serviceCarousel?.classList.remove("is-paused");
+};
+
+const setIndustryImage = (index) => {
+  if (!industryImage || !industryBadges.length) return;
+  activeIndustryIndex = (index + industryBadges.length) % industryBadges.length;
+  const activeBadge = industryBadges[activeIndustryIndex];
+  const nextImage = activeBadge.dataset.image;
+  const nextAlt = activeBadge.dataset.alt || activeBadge.textContent.trim();
+  if (!nextImage || industryImage.src === nextImage) return;
+
+  industryBadges.forEach((badge, badgeIndex) => {
+    badge.classList.toggle("is-active", badgeIndex === activeIndustryIndex);
+  });
+  industryImage.classList.add("is-changing");
+  window.setTimeout(() => {
+    industryImage.src = nextImage;
+    industryImage.alt = nextAlt;
+    industryImage.classList.remove("is-changing");
+  }, 140);
+};
+
+const startIndustryRotation = () => {
+  if (industryTimer || industryBadges.length < 2) return;
+  industryTimer = setInterval(() => {
+    if (!industryHovering) setIndustryImage(activeIndustryIndex + 1);
+  }, 5000);
+};
+
+const restartIndustryRotation = () => {
+  clearInterval(industryTimer);
+  industryTimer = undefined;
+  startIndustryRotation();
+};
+
 carouselPrev?.addEventListener("click", () => scrollServices(-1));
 carouselNext?.addEventListener("click", () => scrollServices(1));
+serviceCarousel?.addEventListener("pointerover", (event) => {
+  if (event.target.closest(".service-card")) pauseServicesMarquee();
+});
+serviceCarousel?.addEventListener("pointerout", (event) => {
+  const nextTarget = event.relatedTarget;
+  if (!nextTarget || !nextTarget.closest?.(".service-card")) resumeServicesMarquee();
+});
 heroDots.forEach((dot, index) => {
   dot.addEventListener("click", () => {
     showHeroSlide(index);
     restartHeroSlideTimer();
   });
+});
+industryBadges.forEach((badge, index) => {
+  const image = new Image();
+  image.src = badge.dataset.image;
+  badge.addEventListener("pointerenter", () => {
+    industryHovering = true;
+    setIndustryImage(index);
+  });
+  badge.addEventListener("focus", () => {
+    industryHovering = true;
+    setIndustryImage(index);
+  });
+  badge.addEventListener("click", () => {
+    setIndustryImage(index);
+    industryHovering = false;
+    restartIndustryRotation();
+  });
+});
+industryList?.addEventListener("pointerleave", () => {
+  industryHovering = false;
+  restartIndustryRotation();
+});
+industryList?.addEventListener("focusout", () => {
+  industryHovering = false;
+  restartIndustryRotation();
 });
 
 year.textContent = String(new Date().getFullYear());
@@ -118,5 +198,7 @@ updateHeader();
 showHeroSlide(0);
 startHeroSlideTimer();
 setupServicesMarquee();
+setIndustryImage(0);
+startIndustryRotation();
 playHeroVideo();
 window.addEventListener("scroll", updateHeader, { passive: true });
