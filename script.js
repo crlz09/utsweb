@@ -15,6 +15,7 @@ const backToTop = document.querySelector("[data-back-to-top]");
 let activeHeroSlide = 0;
 let heroSlideTimer;
 let activeIndustryIndex = 0;
+let activeIndustryImageIndex = 0;
 let industryTimer;
 let industryHovering = false;
 
@@ -120,17 +121,35 @@ const resumeServicesMarquee = () => {
   serviceCarousel?.classList.remove("is-paused");
 };
 
-const setIndustryImage = (index) => {
+const getIndustryImages = (badge) => {
+  const images = (badge.dataset.images || badge.dataset.image || "")
+    .split("|")
+    .map((item) => item.trim())
+    .filter(Boolean);
+  const alts = (badge.dataset.alts || badge.dataset.alt || "")
+    .split("|")
+    .map((item) => item.trim());
+  return { images, alts };
+};
+
+const setIndustryImage = (index, imageIndex = 0) => {
   if (!industryImage || !industryBadges.length) return;
   activeIndustryIndex = (index + industryBadges.length) % industryBadges.length;
   const activeBadge = industryBadges[activeIndustryIndex];
-  const nextImage = activeBadge.dataset.image;
-  const nextAlt = activeBadge.dataset.alt || activeBadge.textContent.trim();
-  if (!nextImage || industryImage.src === nextImage) return;
+  const { images, alts } = getIndustryImages(activeBadge);
+  activeIndustryImageIndex = (imageIndex + images.length) % images.length;
+  const nextImage = images[activeIndustryImageIndex];
+  const nextAlt = alts[activeIndustryImageIndex] || activeBadge.textContent.trim();
+  if (!nextImage) return;
 
   industryBadges.forEach((badge, badgeIndex) => {
     badge.classList.toggle("is-active", badgeIndex === activeIndustryIndex);
   });
+  const nextImageUrl = new URL(nextImage, window.location.href).href;
+  if (industryImage.src === nextImageUrl) {
+    industryImage.alt = nextAlt;
+    return;
+  }
   industryImage.classList.add("is-changing");
   window.setTimeout(() => {
     industryImage.src = nextImage;
@@ -139,10 +158,20 @@ const setIndustryImage = (index) => {
   }, 140);
 };
 
+const showNextIndustryFrame = () => {
+  const activeBadge = industryBadges[activeIndustryIndex];
+  const { images } = getIndustryImages(activeBadge);
+  if (images.length > activeIndustryImageIndex + 1) {
+    setIndustryImage(activeIndustryIndex, activeIndustryImageIndex + 1);
+    return;
+  }
+  setIndustryImage(activeIndustryIndex + 1, 0);
+};
+
 const startIndustryRotation = () => {
   if (industryTimer || industryBadges.length < 2) return;
   industryTimer = setInterval(() => {
-    if (!industryHovering) setIndustryImage(activeIndustryIndex + 1);
+    if (!industryHovering) showNextIndustryFrame();
   }, 5000);
 };
 
@@ -168,8 +197,11 @@ heroDots.forEach((dot, index) => {
   });
 });
 industryBadges.forEach((badge, index) => {
-  const image = new Image();
-  image.src = badge.dataset.image;
+  const { images } = getIndustryImages(badge);
+  images.forEach((src) => {
+    const image = new Image();
+    image.src = src;
+  });
   badge.addEventListener("pointerenter", () => {
     industryHovering = true;
     setIndustryImage(index);
