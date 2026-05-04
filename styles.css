@@ -84,13 +84,6 @@ a {
   object-fit: contain;
 }
 
-.brand-text {
-  max-width: 180px;
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 0.86rem;
-  line-height: 1.12;
-}
-
 .main-nav {
   display: flex;
   align-items: center;
@@ -238,6 +231,18 @@ h1 {
   font-size: 5.5rem;
   line-height: 0.95;
   letter-spacing: 0;
+}
+
+.hero-accent {
+  position: relative;
+  display: inline-block;
+  padding-inline: 0.02em;
+  background: linear-gradient(transparent 68%, rgba(217, 255, 63, 0.95) 68%);
+  font-weight: 950;
+  text-decoration-line: underline;
+  text-decoration-color: #d9ff3f;
+  text-decoration-thickness: 0.12em;
+  text-underline-offset: 0.12em;
 }
 
 h2 {
@@ -588,10 +593,6 @@ h3 {
   .brand img {
     width: 94px;
     height: 42px;
-  }
-
-  .brand-text {
-    display: none;
   }
 
   .nav-toggle {
