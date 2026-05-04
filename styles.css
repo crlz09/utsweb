@@ -199,11 +199,6 @@ a {
   max-width: 880px;
 }
 
-.hero-logo {
-  width: 190px;
-  margin-bottom: 34px;
-}
-
 .eyebrow {
   margin: 0 0 14px;
   color: var(--blue);
@@ -642,11 +637,6 @@ h3 {
     min-height: auto;
     padding: 112px 20px 48px;
     overflow: hidden;
-  }
-
-  .hero-logo {
-    width: 148px;
-    margin-bottom: 26px;
   }
 
   h1 {
