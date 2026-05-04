@@ -228,14 +228,6 @@ h1 {
   letter-spacing: 0;
 }
 
-.hero-accent {
-  position: relative;
-  display: inline-block;
-  padding-inline: 0.02em;
-  background: linear-gradient(transparent 68%, rgba(217, 255, 63, 0.95) 68%);
-  font-weight: inherit;
-}
-
 h2 {
   max-width: 820px;
   margin-bottom: 18px;
