@@ -17,16 +17,17 @@
     <meta property="og:url" content="https://universaltalentsource.com/" />
     <meta
       property="og:image"
-      content="https://images.pexels.com/photos/3862619/pexels-photo-3862619.jpeg?auto=compress&cs=tinysrgb&w=1600"
+      content="https://universaltalentsource.com/assets/uts-logo-bg.png"
     />
     <link rel="canonical" href="https://universaltalentsource.com/" />
+    <link rel="icon" type="image/png" href="./assets/uts-mark-bg.png" />
     <link rel="preconnect" href="https://images.pexels.com" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
     <header class="site-header" data-header>
       <a class="brand" href="#top" aria-label="Universal Talent Source home">
-        <span class="brand-mark">UTS</span>
+        <img src="./assets/uts-logo-bg.png" alt="UTS" />
         <span class="brand-text">Universal Talent Source</span>
       </a>
       <button class="nav-toggle" type="button" aria-label="Open navigation" aria-expanded="false" data-nav-toggle>
@@ -34,9 +35,9 @@
         <span></span>
       </button>
       <nav class="main-nav" data-nav>
-        <a href="#services">Services</a>
+        <a href="#services">Solutions</a>
         <a href="#industries">Industries</a>
-        <a href="#process">Process</a>
+        <a href="#brand">Brand</a>
         <a href="#about">About</a>
         <a class="nav-cta" href="#contact">Contact</a>
       </nav>
@@ -44,27 +45,35 @@
 
     <main id="top">
       <section class="hero" aria-labelledby="hero-title">
-        <div class="hero-media" role="img" aria-label="Industrial team reviewing operations on a factory floor"></div>
-        <div class="hero-overlay"></div>
         <div class="hero-content">
-          <p class="eyebrow">Commercial and industrial staffing partner</p>
-          <h1 id="hero-title">Universal Talent Source</h1>
+          <img class="hero-logo" src="./assets/uts-logo.png" alt="UTS" />
+          <p class="eyebrow">Industrial workforce intelligence</p>
+          <h1 id="hero-title">Talent pipelines built for teams that move.</h1>
           <p class="hero-lede">
-            Best companies linked with the most talented people. We help growing teams hire skilled, dependable workers with speed, care, and long-term fit.
+            Universal Talent Source connects commercial and industrial companies with skilled workers through practical recruiting, clear screening, and operational follow-through.
           </p>
           <div class="hero-actions">
             <a class="button button-primary" href="#contact">Start a hiring conversation</a>
-            <a class="button button-secondary" href="#services">Explore services</a>
+            <a class="button button-secondary" href="#brand">View brand system</a>
           </div>
         </div>
-        <aside class="hero-panel" aria-label="Key strengths">
-          <div>
-            <strong>Quality first</strong>
-            <span>Candidate screening built around skill, reliability, and culture fit.</span>
+        <aside class="hero-panel" aria-label="Talent workflow preview">
+          <div class="panel-header">
+            <span>Workflow Status</span>
+            <strong>64</strong>
           </div>
-          <div>
-            <strong>Responsive support</strong>
-            <span>Flexible recruiting help when hiring needs change quickly.</span>
+          <div class="status-grid">
+            <span class="status pending">Pending 50</span>
+            <span class="status onboarding">Onboarding 4</span>
+            <span class="status working">Working 9</span>
+            <span class="status hold">Hold 1</span>
+          </div>
+          <div class="candidate-preview">
+            <div>
+              <strong>Electrician</strong>
+              <span>Illinois · 6 yrs total experience</span>
+            </div>
+            <a href="#services">View details</a>
           </div>
         </aside>
       </section>
@@ -89,8 +98,8 @@
 
       <section class="section section-light" id="services">
         <div class="section-heading">
-          <p class="eyebrow">How we support you</p>
-          <h2>Recruitment services shaped for operational teams.</h2>
+          <p class="eyebrow">Solutions</p>
+          <h2>Recruiting support with the discipline of an operations desk.</h2>
           <p>
             From first role definition to onboarding support, UTS helps companies reduce hiring friction and improve candidate quality.
           </p>
@@ -123,6 +132,34 @@
             <p>
               Help new hires enter smoothly with practical support around orientation, training coordination, and early integration.
             </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="brand-system" id="brand">
+        <div class="brand-copy">
+          <p class="eyebrow">Brand language</p>
+          <h2>Sharp, technical, and dependable.</h2>
+          <p>
+            The UTS visual system uses a deep navy foundation, white industrial lettering, cool blue interface surfaces, and restrained status colors inherited from the admin product.
+          </p>
+        </div>
+        <div class="palette" aria-label="UTS color palette">
+          <article class="swatch navy">
+            <span>#102830</span>
+            <strong>UTS Navy</strong>
+          </article>
+          <article class="swatch ink">
+            <span>#0F172A</span>
+            <strong>Interface Ink</strong>
+          </article>
+          <article class="swatch ice">
+            <span>#EAF4FF</span>
+            <strong>Blue Ice</strong>
+          </article>
+          <article class="swatch line">
+            <span>#D7E4F5</span>
+            <strong>System Line</strong>
           </article>
         </div>
       </section>
@@ -229,8 +266,9 @@
         <p>Best companies linked with the most talented people.</p>
       </div>
       <nav aria-label="Footer navigation">
-        <a href="#services">Services</a>
+        <a href="#services">Solutions</a>
         <a href="#industries">Industries</a>
+        <a href="#brand">Brand</a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
       </nav>
