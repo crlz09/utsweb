@@ -59,9 +59,7 @@ a {
   min-height: 82px;
   padding: 14px 48px;
   color: var(--white);
-  background: rgba(0, 0, 0, 0.7);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
+  background: var(--uts-navy);
   border-bottom: 1px solid var(--line-dark);
   transition:
     background 180ms ease,
@@ -70,8 +68,8 @@ a {
 
 .site-header.is-scrolled,
 .site-header.is-open {
-  background: rgba(0, 0, 0, 0.76);
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.24);
+  background: var(--uts-navy);
+  box-shadow: 0 16px 48px rgba(16, 40, 48, 0.22);
 }
 
 .brand {
