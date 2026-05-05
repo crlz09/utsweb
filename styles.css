@@ -861,6 +861,20 @@ h3 {
   margin-top: auto;
 }
 
+.direct-card .business-action {
+  border-color: #8bd8e6;
+  box-shadow:
+    0 0 0 1px rgba(139, 216, 230, 0.22),
+    0 14px 34px rgba(43, 121, 208, 0.18);
+}
+
+.direct-card .business-action:hover {
+  border-color: #a7eef6;
+  box-shadow:
+    0 0 0 1px rgba(167, 238, 246, 0.36),
+    0 18px 42px rgba(43, 121, 208, 0.26);
+}
+
 .site-footer {
   display: flex;
   justify-content: center;
