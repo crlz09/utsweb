@@ -12,6 +12,7 @@ const industryImage = document.querySelector("[data-industry-image]");
 const industryBadges = [...document.querySelectorAll("[data-industry-badge]")];
 const industryList = document.querySelector(".industry-list");
 const backToTop = document.querySelector("[data-back-to-top]");
+const revealItems = [...document.querySelectorAll("[data-reveal], [data-reveal-step]")];
 let activeHeroSlide = 0;
 let heroSlideTimer;
 let activeIndustryIndex = 0;
@@ -181,6 +182,27 @@ const restartIndustryRotation = () => {
   startIndustryRotation();
 };
 
+const setupScrollReveal = () => {
+  if (!revealItems.length) return;
+  if (!("IntersectionObserver" in window)) {
+    revealItems.forEach((item) => item.classList.add("is-visible"));
+    return;
+  }
+
+  const revealObserver = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
+      });
+    },
+    { rootMargin: "0px 0px -12% 0px", threshold: 0.18 },
+  );
+
+  revealItems.forEach((item) => revealObserver.observe(item));
+};
+
 carouselPrev?.addEventListener("click", () => scrollServices(-1));
 carouselNext?.addEventListener("click", () => scrollServices(1));
 serviceCarousel?.addEventListener("pointerover", (event) => {
@@ -230,6 +252,7 @@ updateHeader();
 showHeroSlide(0);
 startHeroSlideTimer();
 setupServicesMarquee();
+setupScrollReveal();
 setIndustryImage(0);
 startIndustryRotation();
 playHeroVideo();
