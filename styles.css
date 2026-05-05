@@ -136,22 +136,24 @@ a {
   justify-content: center;
   min-height: 48px;
   padding: 0 18px;
-  border-radius: 7px;
-  font-weight: 850;
+  border-radius: 8px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
   transition:
-    background-color 160ms ease,
-    border-color 160ms ease,
-    box-shadow 160ms ease,
-    opacity 160ms ease,
-    transform 160ms ease;
+    background 0.3s ease,
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    opacity 0.3s ease,
+    transform 0.3s ease;
 }
 
 .nav-cta {
   min-width: 150px;
-  border: 1px solid rgba(139, 216, 230, 0.82);
-  background: linear-gradient(135deg, rgba(43, 121, 208, 0.96), rgba(139, 216, 230, 0.92));
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: transparent;
   color: var(--white);
-  box-shadow: 0 14px 34px rgba(43, 121, 208, 0.2);
+  box-shadow: none;
 }
 
 .nav-cta:hover,
@@ -161,7 +163,8 @@ a {
 
 .nav-cta:hover,
 .nav-cta.is-active {
-  border-color: #a7eef6;
+  border-color: rgba(255, 255, 255, 1);
+  background: linear-gradient(135deg, rgba(43, 121, 208, 0.72), rgba(139, 216, 230, 0.54));
   box-shadow:
     0 0 0 1px rgba(167, 238, 246, 0.28),
     0 18px 42px rgba(43, 121, 208, 0.32);
@@ -333,14 +336,29 @@ h3 {
 }
 
 .button-primary {
-  border: 1px solid var(--white);
-  background: var(--white);
-  color: var(--uts-navy);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: transparent;
+  color: var(--white);
 }
 
 .button-primary:hover {
-  background: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 16px 34px rgba(20, 40, 55, 0.16);
+  border-color: rgba(255, 255, 255, 1);
+  background: linear-gradient(135deg, rgba(43, 121, 208, 0.72), rgba(139, 216, 230, 0.54));
+  box-shadow: 0 16px 34px rgba(43, 121, 208, 0.22);
+}
+
+.hero .button-primary {
+  border-color: rgba(139, 216, 230, 0.58);
+  background: rgba(0, 102, 204, 0.2);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  color: var(--white);
+}
+
+.hero .button-primary:hover {
+  border-color: rgba(167, 238, 246, 0.92);
+  background: linear-gradient(135deg, rgba(0, 102, 204, 0.34), rgba(139, 216, 230, 0.24));
+  box-shadow: 0 18px 42px rgba(43, 121, 208, 0.28);
 }
 
 .button-secondary {
@@ -1003,9 +1021,21 @@ h3 {
 
   .nav-cta {
     margin-top: 6px;
-    border-color: rgba(139, 216, 230, 0.82);
-    background: linear-gradient(135deg, rgba(43, 121, 208, 0.96), rgba(139, 216, 230, 0.92));
+    border-color: rgba(255, 255, 255, 0.4);
+    background: transparent;
     color: var(--white);
+  }
+
+  .main-nav a:not(.nav-cta)::after {
+    right: 16px;
+    bottom: 50%;
+    left: auto;
+    transform: translateY(50%) scale(0.2);
+  }
+
+  .main-nav a:hover::after,
+  .main-nav a.is-active::after {
+    transform: translateY(50%) scale(1);
   }
 
   .hero {
