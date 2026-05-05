@@ -59,7 +59,9 @@ a {
   min-height: 82px;
   padding: 14px 48px;
   color: var(--white);
-  background: var(--uts-navy);
+  background: rgba(0, 0, 0, 0.7);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--line-dark);
   transition:
     background 180ms ease,
@@ -68,8 +70,8 @@ a {
 
 .site-header.is-scrolled,
 .site-header.is-open {
-  background: var(--uts-navy);
-  box-shadow: 0 16px 48px rgba(16, 40, 48, 0.22);
+  background: rgba(0, 0, 0, 0.76);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.24);
 }
 
 .brand {
@@ -103,19 +105,30 @@ a {
 
 .main-nav a:not(.nav-cta)::after {
   position: absolute;
-  right: 0;
-  bottom: -7px;
-  left: 0;
-  height: 2px;
-  background: var(--white);
+  left: 50%;
+  bottom: -10px;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: #8bd8e6;
+  box-shadow: 0 0 16px rgba(139, 216, 230, 0.72);
   content: "";
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 180ms ease;
+  opacity: 0;
+  transform: translateX(-50%) scale(0.2);
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
 }
 
-.main-nav a:hover::after {
-  transform: scaleX(1);
+.main-nav a:hover,
+.main-nav a.is-active {
+  color: var(--white);
+}
+
+.main-nav a:hover::after,
+.main-nav a.is-active::after {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
 }
 
 .nav-cta,
@@ -137,14 +150,23 @@ a {
 
 .nav-cta {
   min-width: 150px;
-  border: 1px solid var(--white);
-  background: var(--white);
-  color: var(--uts-navy);
+  border: 1px solid rgba(139, 216, 230, 0.82);
+  background: linear-gradient(135deg, rgba(43, 121, 208, 0.96), rgba(139, 216, 230, 0.92));
+  color: var(--white);
+  box-shadow: 0 14px 34px rgba(43, 121, 208, 0.2);
 }
 
 .nav-cta:hover,
 .button:hover {
   transform: scale(1.03);
+}
+
+.nav-cta:hover,
+.nav-cta.is-active {
+  border-color: #a7eef6;
+  box-shadow:
+    0 0 0 1px rgba(167, 238, 246, 0.28),
+    0 18px 42px rgba(43, 121, 208, 0.32);
 }
 
 .nav-toggle {
@@ -965,8 +987,11 @@ h3 {
     align-items: stretch;
     gap: 0;
     padding: 12px;
-    background: var(--white);
-    color: var(--ink);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(0, 0, 0, 0.82);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    color: var(--white);
     box-shadow: var(--shadow);
   }
 
@@ -980,8 +1005,8 @@ h3 {
 
   .nav-cta {
     margin-top: 6px;
-    border-color: var(--line);
-    background: var(--uts-navy);
+    border-color: rgba(139, 216, 230, 0.82);
+    background: linear-gradient(135deg, rgba(43, 121, 208, 0.96), rgba(139, 216, 230, 0.92));
     color: var(--white);
   }
 

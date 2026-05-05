@@ -1,6 +1,7 @@
 const header = document.querySelector("[data-header]");
 const nav = document.querySelector("[data-nav]");
 const navToggle = document.querySelector("[data-nav-toggle]");
+const navLinks = [...document.querySelectorAll("[data-nav-link]")];
 const year = document.querySelector("[data-year]");
 const heroVideo = document.querySelector(".hero-video");
 const serviceCarousel = document.querySelector("[data-service-carousel]");
@@ -203,6 +204,36 @@ const setupScrollReveal = () => {
   revealItems.forEach((item) => revealObserver.observe(item));
 };
 
+const setActiveNavLink = (id) => {
+  navLinks.forEach((link) => {
+    link.classList.toggle("is-active", link.getAttribute("href") === `#${id}`);
+  });
+};
+
+const setupActiveNav = () => {
+  if (!navLinks.length) return;
+  const sections = navLinks
+    .map((link) => document.querySelector(link.getAttribute("href")))
+    .filter(Boolean);
+  if (!sections.length) return;
+  if (!("IntersectionObserver" in window)) {
+    setActiveNavLink(sections[0].id);
+    return;
+  }
+
+  const navObserver = new IntersectionObserver(
+    (entries) => {
+      const activeEntry = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (activeEntry) setActiveNavLink(activeEntry.target.id);
+    },
+    { rootMargin: "-34% 0px -48% 0px", threshold: [0.08, 0.22, 0.45] },
+  );
+
+  sections.forEach((section) => navObserver.observe(section));
+};
+
 carouselPrev?.addEventListener("click", () => scrollServices(-1));
 carouselNext?.addEventListener("click", () => scrollServices(1));
 serviceCarousel?.addEventListener("pointerover", (event) => {
@@ -253,6 +284,7 @@ showHeroSlide(0);
 startHeroSlideTimer();
 setupServicesMarquee();
 setupScrollReveal();
+setupActiveNav();
 setIndustryImage(0);
 startIndustryRotation();
 playHeroVideo();
