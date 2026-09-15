@@ -10,16 +10,17 @@ const carouselNext = document.querySelector("[data-carousel-next]");
 const heroSlides = [...document.querySelectorAll("[data-hero-slide]")];
 const heroDots = [...document.querySelectorAll("[data-hero-dot]")];
 const industryImage = document.querySelector("[data-industry-image]");
-const industryBadges = [...document.querySelectorAll("[data-industry-badge]")];
-const industryList = document.querySelector(".industry-list");
+const industryFrames = [
+  { src: "./images/optimized/industrial-electricians.webp", alt: "Industrial electrician working in a facility" },
+  { src: "./images/optimized/commercial-electricians.webp", alt: "Commercial electrician working on a job site" },
+  { src: "./images/optimized/electricians-field.webp", alt: "Electrician working on an electrical panel" },
+];
 const backToTop = document.querySelector("[data-back-to-top]");
 const revealItems = [...document.querySelectorAll("[data-reveal], [data-reveal-step]")];
 let activeHeroSlide = 0;
 let heroSlideTimer;
 let activeIndustryIndex = 0;
-let activeIndustryImageIndex = 0;
 let industryTimer;
-let industryHovering = false;
 
 const updateHeader = () => {
   header?.classList.toggle("is-scrolled", window.scrollY > 24);
@@ -123,64 +124,27 @@ const resumeServicesMarquee = () => {
   serviceCarousel?.classList.remove("is-paused");
 };
 
-const getIndustryImages = (badge) => {
-  const images = (badge.dataset.images || badge.dataset.image || "")
-    .split("|")
-    .map((item) => item.trim())
-    .filter(Boolean);
-  const alts = (badge.dataset.alts || badge.dataset.alt || "")
-    .split("|")
-    .map((item) => item.trim());
-  return { images, alts };
-};
-
-const setIndustryImage = (index, imageIndex = 0) => {
-  if (!industryImage || !industryBadges.length) return;
-  activeIndustryIndex = (index + industryBadges.length) % industryBadges.length;
-  const activeBadge = industryBadges[activeIndustryIndex];
-  const { images, alts } = getIndustryImages(activeBadge);
-  activeIndustryImageIndex = (imageIndex + images.length) % images.length;
-  const nextImage = images[activeIndustryImageIndex];
-  const nextAlt = alts[activeIndustryImageIndex] || activeBadge.textContent.trim();
-  if (!nextImage) return;
-
-  industryBadges.forEach((badge, badgeIndex) => {
-    badge.classList.toggle("is-active", badgeIndex === activeIndustryIndex);
-  });
-  const nextImageUrl = new URL(nextImage, window.location.href).href;
-  if (industryImage.src === nextImageUrl) {
-    industryImage.alt = nextAlt;
+const setIndustryImage = (index) => {
+  if (!industryImage || !industryFrames.length) return;
+  activeIndustryIndex = (index + industryFrames.length) % industryFrames.length;
+  const frame = industryFrames[activeIndustryIndex];
+  if (industryImage.src === new URL(frame.src, window.location.href).href) {
+    industryImage.alt = frame.alt;
     return;
   }
   industryImage.classList.add("is-changing");
   window.setTimeout(() => {
-    industryImage.src = nextImage;
-    industryImage.alt = nextAlt;
+    industryImage.src = frame.src;
+    industryImage.alt = frame.alt;
     industryImage.classList.remove("is-changing");
   }, 140);
 };
 
-const showNextIndustryFrame = () => {
-  const activeBadge = industryBadges[activeIndustryIndex];
-  const { images } = getIndustryImages(activeBadge);
-  if (images.length > activeIndustryImageIndex + 1) {
-    setIndustryImage(activeIndustryIndex, activeIndustryImageIndex + 1);
-    return;
-  }
-  setIndustryImage(activeIndustryIndex + 1, 0);
-};
-
 const startIndustryRotation = () => {
-  if (industryTimer || industryBadges.length < 2) return;
+  if (!industryImage || industryTimer || industryFrames.length < 2) return;
   industryTimer = setInterval(() => {
-    if (!industryHovering) showNextIndustryFrame();
+    setIndustryImage(activeIndustryIndex + 1);
   }, 5000);
-};
-
-const restartIndustryRotation = () => {
-  clearInterval(industryTimer);
-  industryTimer = undefined;
-  startIndustryRotation();
 };
 
 const setupScrollReveal = () => {
@@ -249,33 +213,9 @@ heroDots.forEach((dot, index) => {
     restartHeroSlideTimer();
   });
 });
-industryBadges.forEach((badge, index) => {
-  const { images } = getIndustryImages(badge);
-  images.forEach((src) => {
-    const image = new Image();
-    image.src = src;
-  });
-  badge.addEventListener("pointerenter", () => {
-    industryHovering = true;
-    setIndustryImage(index);
-  });
-  badge.addEventListener("focus", () => {
-    industryHovering = true;
-    setIndustryImage(index);
-  });
-  badge.addEventListener("click", () => {
-    setIndustryImage(index);
-    industryHovering = false;
-    restartIndustryRotation();
-  });
-});
-industryList?.addEventListener("pointerleave", () => {
-  industryHovering = false;
-  restartIndustryRotation();
-});
-industryList?.addEventListener("focusout", () => {
-  industryHovering = false;
-  restartIndustryRotation();
+industryFrames.forEach(({ src }) => {
+  const image = new Image();
+  image.src = src;
 });
 
 year.textContent = String(new Date().getFullYear());
